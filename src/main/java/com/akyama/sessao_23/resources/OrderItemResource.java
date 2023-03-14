@@ -1,7 +1,7 @@
 package com.akyama.sessao_23.resources;
 
-import com.akyama.sessao_23.entities.User;
-import com.akyama.sessao_23.services.UserService;
+import com.akyama.sessao_23.entities.OrderItem;
+import com.akyama.sessao_23.services.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/order_item")
+public class OrderItemResource {
 
     @Autowired
-    private UserService service;
+    private OrderItemService service;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<OrderItem>> findAll(){
 
-        List<User> list = service.findAll();
+        List<OrderItem> list = service.findAll();
         return  ResponseEntity.ok().body(list);
 
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id) {
-        User obj = service.findbyId(id);
+    public ResponseEntity<OrderItem> findById(@PathVariable Long id) {
+        OrderItem obj = service.findbyId(id);
         return ResponseEntity.ok().body(obj);
     }
 }
