@@ -17,7 +17,8 @@ A aplicação consiste em uma listagem de pedidos, onde os dados são coletados,
 - Tratamento de exceções
 
 ## Modelo conceitual
-![Modelo Conceitual](https://github.com/GustavoAkyama/assets/blob/main/modelo-conceitual.png)
+![modelo-conceitual](https://user-images.githubusercontent.com/110904070/225190666-900ee19b-26ab-44f3-b8e7-2f286d379dea.png)
+
 
 # Tecnologias utilizadas
 ## Back end
