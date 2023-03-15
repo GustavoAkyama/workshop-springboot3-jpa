@@ -3,6 +3,7 @@ package com.akyama.sessao_23.services;
 
 import com.akyama.sessao_23.entities.User;
 import com.akyama.sessao_23.repositories.UserRepository;
+import com.akyama.sessao_23.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,9 @@ public class UserService {
         return repository.findAll();
     }
 
-    public User findbyId(Long id){
+    public User findById(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj){
