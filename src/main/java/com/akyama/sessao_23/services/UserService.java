@@ -3,8 +3,11 @@ package com.akyama.sessao_23.services;
 
 import com.akyama.sessao_23.entities.User;
 import com.akyama.sessao_23.repositories.UserRepository;
+import com.akyama.sessao_23.services.exceptions.DatabaseException;
 import com.akyama.sessao_23.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +34,14 @@ public class UserService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        try{
+            User user = findById(id);
+            repository.delete(user);
+        } catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
     
     public User update(Long id, User obj){
